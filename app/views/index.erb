@@ -1,0 +1,20 @@
+This is the welcome page, explains what it is and how to do it 
+
+<h1> Action/Project</h1>
+
+<p> Feel like nothing adds up? Keep track of your actions to make things better here. </p>
+
+
+<ul>
+    <% if logged_in? %>
+      
+      <li><a href="/tweets">Add a new action</a> </li>
+      <li><a href="/users/logout">Logout</a> </li>
+
+    <% else %>
+
+      <li><a href="/login">Login</a> </li>
+      <li><a href="/signup">Sign up</a> </li>
+
+    <% end %>
+</ul>
