@@ -6,5 +6,4 @@ end
 
 use Rack::MethodOverride
 use ActionsController
-use UsersController
 run ApplicationController
