@@ -1,11 +1,25 @@
 Add a new action here. What does it include?  Date TItle Description 
 
-Title 
+<h2>Here's what I did today: </h2>
+<form  action="/actions" method="POST">
 
-Date
+	<label for="title">Title</label>
+		<input type="text: name="title">
 
-Description
+	<label for="date">Date</label>
+		<input type="text" name="date">
 
-Notes/outcome/Do it again? 
+<!-- FIGURE OUT TEXTAREA -->
+	<label for="description">Describe it (did it take long, feel effective, would you do it again, tell others... </label>
+		
+		<textarea name="description" id= "description" ></textarea>
 
+	<!-- 	share with others?  twitter, etc. -->	
+ 	<input type="submit"  value="submit">
+</form>
+ 
+put links here/make sure the edit works /put these into the footer? EDIT THIS depending on flow that I want 
+<h3><a href="/actions/new">Add a new action</a></h3>
+<h3><a href="/actions/:id/edit">Need to edit/change an action?</a></h3>
+<h3><a href="/actions/index">See All</a></h3>
 

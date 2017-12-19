@@ -6,7 +6,7 @@ class ActionsController < ApplicationController
 	get '/actions' do
 		if logged_in?
 			@actions = Action.all
-			erb :'actions/all' #actions/index? actions? 
+			erb :'actions/index' 
 		else redirect to '/citizens/login'
 		end 
 	end 
@@ -24,8 +24,9 @@ class ActionsController < ApplicationController
 		if logged_in? 
 			if current_user && params[:content] != ""
 				@citizen = Citizen.find_by(:username => params[:username])
-				@action = Action.create(:content => params[:content], :user_id => current_user.id)
-				redirect to "citizens/#{current_user.username}"
+			
+				@action = Action.create(:title => params[:title], :date => params[:date], :description => params[:description], :id => current_user.id)
+				redirect to "/citizens/#{current_user.username}"
 			else 
 				redirect to '/actions/new'
 			end
@@ -67,7 +68,7 @@ class ActionsController < ApplicationController
 			redirect to "/actions/#{@tweet.id}/edit"
 		else
 		    @tweet.update(:content => params[:content])
-		    redirect to "actions#{@tweet.id}"
+		    redirect to "/actions#{@tweet.id}"
 		end 
 	end 
 

@@ -16,11 +16,13 @@ class ApplicationController < Sinatra::Base
 	   erb :'index'
 	end
 
-# slug
-  	get '/citizens/:slug' do
-  		@citizen = Citizen.find_by_slug(params[:slug])
-  		erb :'citizens/show'
-  	end 
+# # slug
+#   	get '/citizens/:slug' do
+
+#   		@citizen = Citizen.find_by_slug(params[:slug])
+#   		erb :'citizens/show'
+#   	end 
+# Citizen.create(:username => "leo", :email => "leo@email.com", :password => "leo")
 
 #1 send SIGNUP form to browser
   	get '/citizens/signup' do
@@ -34,10 +36,11 @@ class ApplicationController < Sinatra::Base
 #2 get SIGNUP data from form and CREATE citizen entry in db
   	post '/citizens/signup' do 
   		if params[:username] == '' ||  params[:email] ==  "" || params[:password] == ""
-  			redirect to '/signup'
+  			redirect to '/citizens/signup'
   		else
   			@citizen = Citizen.new(:username => params[:username], :email => params[:email], :password => params[:password])
-  			session[:user_id] = @citizen.id
+  			@citizen.save
+        session[:user_id] = @citizen.id
   			redirect to '/actions'
   		end 
   	end 
@@ -45,7 +48,8 @@ class ApplicationController < Sinatra::Base
  #3 Send LOGIN form to browser
   	get '/citizens/login' do
   		if !logged_in?
-  			erb :'login'
+    
+  			erb :'citizens/login'
   		else
   			redirect to '/actions'
   		end 
@@ -53,24 +57,26 @@ class ApplicationController < Sinatra::Base
 
  #4 Read LOGIN data from form, send to db/sessions 
  	post '/citizens/login' do
- 		redirect to '/actions' if logged_in?
- 		@citizen = Citizen.find_by(:username => params[username])
+    redirect to '/actions' if logged_in?
 
-	 		if @citizen && @citizen.authenticate(params[:password])
-	 			session[:user_id] = @user.id
-	 			redirect to '/actions'
-	 		else
-	 			redirect to '/'
-	 		end 
-	
+    @citizen = Citizen.find_by(username: params[:username])
+    
+	 	if @citizen && @citizen.authenticate(params[:password])
+
+	 		 session[:user_id] = @citizen.id
+		   redirect to '/actions'
+	  else
+	 	    redirect to '/'
+	  end
  	end 
+
 #5 LOGOUT/delete/clear session 
 	get '/citizens/logout' do
-		if loggen_in?
+		if logged_in?
 			session.clear
 			redirect to '/citizens/login'
 		else 
-			redirect to '/login'
+			redirect to '/citizens/login'
 		end 
 	end 
 
@@ -82,7 +88,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-       User.find(session[:user_id])
+       Citizen.find(session[:user_id])
     end
   end 
 

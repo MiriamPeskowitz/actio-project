@@ -1,17 +1,18 @@
-show.erb
 
+<h2>Your growing list of actions...</h2>
 
-This show page has all the actions for a single user 
-<!-- 
-<p> Actions for <%= @citizen.username %></p>
+<p> Your name: <%= @citizen.username %></p>
 
-<ul>
-	<% @citizen.action.each do |tweet| %>
+<ol><h3>Your actions:</h3>
+	<% @citizen.actions.each do |action| %>
 	  <li>
-	    <%= action.content %>
+	    <%= action.title %>
+	    <%= action.date %>
+	    <%= action.description %>
 	  </li>
 	<% end %>
-</ul>
+</ol>
 
-<h3><a href="/actions/new">Create</a></h3>
-<h3><a href="/citizen/logout">Log out </a></h3> -->
+<h3><a href="/actions/new">Add a new action</a></h3>
+<h3><a href="/citizens/logout">Log out </a></h3>
+Add edit? 

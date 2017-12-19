@@ -1,19 +1,20 @@
-Shows your action that you just made ? 
+Shows the single action that you just made ? 
 
 
 with buttons/links to  delete, edit, create a next new one, see all == which is the actions/index 
-<!-- 
-Like this 
+
 <p>Your last action: </p>
-<%= @action.content %>
+<%= @action.description %>
+
 <form action="/action/<%= @action.id %>" method="POST">
   <input type="hidden" name="_method" value="DELETE">
 
-  <input type="submit" value="Delete Action">
+  <input type="submit" value="Delete This Action">
 </form>
 
 
-<h3><a href="/action/<%=@action.id%>/edit">Edit action</a></h3>
+Coordinate with the others, add into footer or layout? 
+<h3><a href="/actions/<%=@action.id%>/edit">Edit action</a></h3>
 <h3><a href="/actions/new">Add a new action</a></h3>
 <h3><a href="/actions">See all</a></h3>
 <h3><a href="/citizens/logout">Logout</a></h3> -->

@@ -1,6 +1,6 @@
 
 1. Set up models, citizen and action
-2. Set up views. CRUD for action, login/signup for citizen, etc
+2. Think about views. CRUD for action, login/signup for citizen, etc
 3. Set up controllers, add to config.ru: ApplicationCont -- basic entrypoint and helpers, ActionController. CitizenConteoller for login. 
 4. How to start? 
 	Go through the RESTful process on Controllers and set up all the routes. When done, check on browser to see what's working or not. 

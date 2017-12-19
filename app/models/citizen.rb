@@ -9,7 +9,7 @@ class Citizen < ActiveRecord::Base
 	end
 
     def self.find_by_slug(slug)
-			User.all.find {|user| user.slug == slug}
+		Citizen.all.find {|c| c.slug == slug}
 	end
 
 end
