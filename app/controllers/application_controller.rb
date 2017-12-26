@@ -4,6 +4,7 @@ class ApplicationController < Sinatra::Base
 
   enable :sessions
   set :session_secret, "action_secret" 	
+  use Rack::Flash
 
   configure do
     set :public_folder, 'public'
@@ -21,13 +22,6 @@ class ApplicationController < Sinatra::Base
       erb :'citizens/index'
     end
 
-  	# get '/citizens/:slug' do
-  	# 	@citizen = Citizen.find_by_slug(params[:slug])
-  	# 	erb :'citizens/show'
-  	# end 
-
-# Citizen.create(:username => "leo", :email => "leo@email.com", :password => "leo")
-
 #1 send SIGNUP form to browser
   	get '/citizens/signup' do
   		if logged_in? 
@@ -40,7 +34,8 @@ class ApplicationController < Sinatra::Base
 #2 get SIGNUP data from form and CREATE citizen entry in db
   	post '/citizens/signup' do 
   		if params[:username] == '' ||  params[:email] ==  "" || params[:password] == ""
-  			redirect to '/citizens/signup'
+  			 flash[:notice] = "Fill in all the fields, okay?"
+        redirect to '/citizens/signup'
   		else
   			@citizen = Citizen.create(:username => params[:username], :email => params[:email], :password => params[:password])
         session[:user_id] = @citizen.id
@@ -66,6 +61,7 @@ class ApplicationController < Sinatra::Base
   	 		 session[:user_id] = @citizen.id
   		   redirect to '/actions'
   	  else
+          flash[:notice] = "You've got a lot on your mind, but we do need a valid Username and Password."
   	 	    redirect to '/'
   	  end
    	end 
