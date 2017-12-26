@@ -11,3 +11,27 @@
 7. As I figure out the fields in actions/new.erb, then I'll know what the migrations should be. 
 
 
+
+1.Need help: separating, so that you can only see your own data. SOLVED -- this was amazing -- by using the relationships: not @actions = Action.... but this, because current_user is the instantiation of the Citizen class, so it's basically Citizen.actions...: 
+	get '/actions' do
+		if logged_in?
+			@actions = current_user.actions
+			erb :'actions/index' 
+		else 
+
+
+2. seed data ? Didn't get to this. 
+3. which one? redirect to "/actions/#{current_user.username}" # or actions/#{@action.slug} DONE - -slug is helpful for the browser url
+4. debugging: show.erb DONE 
+5. How to get to citizens/show.erb vs actions/show.erb DONE 
+6..id vs user.id SOLVED: needed to be citizen_id. Tried to jerry-rig it, then changed it with a new migration 
+
+
+
+	Kevin "all my existential crises as a developer have been about missing the second equal sign in an if then statement"
+
+
+Next: 
+how to edit any one from your list? What is necessary to do this? 
+Add a post-Logout page that's inspirational 
+Add " here's what other people are doing "

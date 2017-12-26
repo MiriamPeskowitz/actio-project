@@ -1,15 +1,16 @@
-This page shows all the actions that people are doing 
+
+
 <h2>Here's a list of your actions</h2>
 <p>Welcome,  <%= current_user.username %> </p>
 
 <ol>
 	<% @actions.each do |action| %>
 	<div id="each-action">
-		<%= action.content %>
+		<%= action.date %>: <%= action.title %> -- <%= action.description %>
 	</div>
 	<% end %>
 </ol>
+<br>
 
-put links here/make sure the edit works 
 <h3><a href="/actions/new">Add a new action</a></h3>
-<h3><a href="/actions/:id/edit">Need to edit/change an action?</a></h3>
+<h3><a href="/citizens/logout">Logout</a></h3>

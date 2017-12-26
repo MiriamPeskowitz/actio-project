@@ -5,9 +5,10 @@ class ActionsController < ApplicationController
 #1 Read index
 	get '/actions' do
 		if logged_in?
-			@actions = Action.all
+			@actions = current_user.actions
 			erb :'actions/index' 
-		else redirect to '/citizens/login'
+		else 
+			redirect to '/citizens/login'
 		end 
 	end 
 
@@ -19,14 +20,24 @@ class ActionsController < ApplicationController
 			redirect to '/citizens/login'	
 		end 
 	end 
+
+#2.5 slug
+
+	# get 'actions/:slug' do
+	# 	@action = Action.find_by_slug(params[:slug])
+	# 	erb :'actions/show'
+	# end 	
 #3 Create/get data
 	post '/actions' do
 		if logged_in? 
-			if current_user && params[:content] != ""
-				@citizen = Citizen.find_by(:username => params[:username])
+
+			if current_user && params[:description] != ""
+				# @citizen = Citizen.find_by(:username => params[:username])
+				@action = Action.create(:title => params[:title], :date => params[:date], :description => params[:description], :citizen_id => current_user.id)
+	
+				redirect to "/actions/#{@action.id}"
 			
-				@action = Action.create(:title => params[:title], :date => params[:date], :description => params[:description], :id => current_user.id)
-				redirect to "/citizens/#{current_user.username}"
+				# or actions/#{@action.slug} how does this work? yes -- to get username? 
 			else 
 				redirect to '/actions/new'
 			end
@@ -35,24 +46,29 @@ class ActionsController < ApplicationController
 		end
 	end 
 
+
 #4 Read/show page 
 	get '/actions/:id' do
 		if !logged_in?
 			redirect to '/citizens/login'	
 		else
 			@action = Action.find_by(id: params[:id])
+		
 			erb :'actions/show'
 		end 
 	end 
 #5 update/send form to browser
 	get '/actions/:id/edit' do
-		@tweet = Tweet.find_by(id: params[:id])
-		if logged_in && @tweet
-			if current_user.id = @tweet.user_id
-				erb :'actions/edit'
+		# possible: use slug? Ask coach 
+		# @action = Action.find_by_slug(params[:slug])
+		# @action.update(params[:title], params[:date], params[:description])
 
+		@action= Action.find_by(:id => params[:id])
+		if logged_in? && @action
+			if current_user.id == @action.citizen_id
+				erb :'actions/edit'
 			else 
-				redirect to :'/actions'
+				redirect to '/actions'
 			end 
 		else
 		redirect to '/citizens/login'
@@ -61,14 +77,14 @@ class ActionsController < ApplicationController
 
 #6 update/get data from form 
 	patch '/actions/:id' do
-		@action = Action.findy_by_id(params[:id])
+		@action = Action.find_by_id(params[:id])
 		redirect to '/citizens/login' if !logged_in?
-
-		if params[:content] = "" || current_user.id != @tweet.user_id
-			redirect to "/actions/#{@tweet.id}/edit"
+# how would I update several fields? 
+		if params[:description] == "" || current_user.id != @action.citizen_id
+			redirect to "/actions/#{@action.id}/edit"
 		else
-		    @tweet.update(:content => params[:content])
-		    redirect to "/actions#{@tweet.id}"
+		    @action.update(:description => params[:description])
+		    redirect to "/actions/#{@action.id}"
 		end 
 	end 
 
@@ -77,8 +93,8 @@ class ActionsController < ApplicationController
 		@action = Action.find_by_id(params[:id])
 		redirect to "/" if !logged_in?
 
-		if @tweet && @tweet.user_id = current_user.id
-			@tweet.delete 
+		if @action && @action.citizen_id == current_user.id
+			@action.delete 
 			redirect to '/'
 		end
 	end
