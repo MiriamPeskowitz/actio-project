@@ -33,22 +33,45 @@ ActiveRecord, with this schema:
 
 end
 ```
-── Gemfile
+```
+
+├── Gemfile
+├── Gemfile.lock
+├── LICENSE.md
 ├── README.md
 ├── Rakefile
 ├── app
 │   ├── controllers
-│   │   └── application_controller.rb
+│   │   ├── action_controller.rb
+│   │   ├── application_controller.rb
+│   │   └── dev\ notes
 │   ├── models
+│   │   ├── action.rb
+│   │   └── citizen.rb
 │   └── views
-│       ├── layout.erb
-│       └── welcome.erb
+│       ├── actions
+│       │   ├── edit.erb
+│       │   ├── index.erb
+│       │   ├── new.erb
+│       │   └── show.erb
+│       ├── citizens
+│       │   ├── login.erb
+│       │   ├── show.erb
+│       │   └── signup.erb
+│       ├── index.erb
+│       └── layout.erb
 ├── config
 │   ├── environment.rb
 │   └── initializers
 ├── config.ru
 ├── db
-│   └── migrate
+│   ├── development.sqlite
+│   ├── migrate
+│   │   ├── 20171218024855_create_citizens_table.rb
+│   │   ├── 20171218233059_create_actions_table.rb
+│   │   ├── 20171224225935_add_userid_to_actions.rb
+│   │   └── 20171226025426_change_userid_to_citizenid.rb
+│   └── schema.rb
 ├── lib
 ├── public
 │   ├── favicon.ico
@@ -57,6 +80,8 @@ end
 │   ├── javascripts
 │   └── stylesheets
 │       └── main.css
-└── spec
-    ├── application_controller_spec.rb
-    └── spec_helper.rb
+├── spec
+│   ├── application_controller_spec.rb
+│   └── spec_helper.rb
+└── spec.md
+```
