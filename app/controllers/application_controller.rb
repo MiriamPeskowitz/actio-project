@@ -12,10 +12,10 @@ class ApplicationController < Sinatra::Base
   end
 
 #show homepage 
-	get "/" do
-		session.clear
-	  erb :'index'
-	end
+  	get "/" do
+  		session.clear
+  	  erb :'index'
+  	end
 
     get '/citizens' do
       @citizens = Citizen.all
@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
 #2 get SIGNUP data from form and CREATE citizen entry in db
   	post '/citizens/signup' do 
   		if params[:username] == '' ||  params[:email] ==  "" || params[:password] == ""
-  			 flash[:notice] = "Fill in all the fields, okay?"
+  			flash[:notice] = "Fill in all the fields, okay?"
         redirect to '/citizens/signup'
   		else
   			@citizen = Citizen.create(:username => params[:username], :email => params[:email], :password => params[:password])
@@ -66,13 +66,13 @@ class ApplicationController < Sinatra::Base
   	  end
    	end 
 
-  #5 LOGOUT/delete/clear session 
+  #5 LOGOUT/clear session 
   	get '/citizens/logout' do
   		if logged_in?
   			session.clear
-  			redirect to '/citizen/login'
+  			erb :'citizens/goodbye'
   		else 
-  			redirect to '/citizen/login'
+  			redirect to '/citizens/login'
   		end 
   	end 
 
