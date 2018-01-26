@@ -1,5 +1,10 @@
 
 
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+
 <p><%= current_user.username %>'s last action was: 
 	<br />
 	<%= @action.date %> .... <%= @action.title %> .... <%= @action.description %>
