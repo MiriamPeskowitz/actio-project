@@ -1,5 +1,6 @@
 
 <h2>So glad you are here, resister/activist. Want to record what you do to make life better? Start by logging in.</h2>
+
 <form action="/citizens/login" method="POST">
 
   <label for="username">Your username</label>
@@ -20,7 +21,7 @@
 	<% @actions.each do |action| %>
 	  <li>
 	    <%= action.title %> 
-	    ...<%= action.description %>
+	    <%= action.description %>
 	  </li>
 	<% end %>
 </ol>

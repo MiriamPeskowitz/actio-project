@@ -1,8 +1,8 @@
 
 
-  Citizen.create(:name => "Hilary", :email => "Hilary@mail.com" What do I add for password_digest? )
-  Citizen.create(:name => "Mark", :email => "mark@mail.com" What do I add for password_digest? )
-  Citizen.create(:name => "Chad", :email => "Chad@mail.com" What do I add for password_digest? )
+  Citizen.create(:name => "Hilary", :email => "Hilary@mail.com", :password_digest => "dog!!")
+  Citizen.create(:name => "Mark", :email => "mark@mail.com", :password_digest => "dog!!" )
+  Citizen.create(:name => "Chad", :email => "Chad@mail.com", :password_digest => "dog!!" )
 
   Action.create(:date => "Sunday", :title => "work with immigrant in the city", :description => "finding work", :citizen_id => "1")
 

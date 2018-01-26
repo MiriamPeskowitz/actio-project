@@ -2,8 +2,7 @@
 
 <h1> Action/Project</h1>
 
-<p> Feeling like your political actions do not add up? Keep track of everything you do to make things better. </p>
-
+<p> Feel like your political actions do not add up? Keep track of all you do to make our community a better place. </p>
 
 
 <ul>
@@ -11,22 +10,22 @@
       
       <li><a href="/actions/new">Add a new action</a> </li>
       <li><a href="/citizens/logout">Logout</a> </li>
-      <li>(add view big list of actions?)</li>
+    
     
     <% else %>
       <li><a href="/citizens/login">Login</a> </li>
-      <li><a href="/citizens/signup">Sign up</a> </li>
+      <li><a href="./citizens/signup">Sign up</a> </li>
 
     <% end %>
 </ul>
 
 <h3>What people are doing: </h3>
-<ol>
+<ul>
 	<% @actions.each do |action| %>
 	  <li>
-	    <%= action.title - action.description %>
+	    <%= action.title %> -- <%= action.description %>
 	  </li>
 	<% end %>
-</ol>
+</ul>
 
 
