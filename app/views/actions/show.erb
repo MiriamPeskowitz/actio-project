@@ -1,18 +1,14 @@
 
 
 <p><%= current_user.username %>'s last action was: 
+	<br />
+	<%= @action.date %> .... <%= @action.title %> .... <%= @action.description %>
 	<br></br>
-	<%= @action.date %>
-	<br></br>
-	<%= @action.title %>
-	<br></br>
-	<%= @action.description %>
-	<br></br>
-	<br></br>
-	Thank you for your service! 
+	
+	Thank you for your service to humanity! 
 </p>
 
-<h3><a href="/actions">See all my actions.</a></h3>
+<h3><a href="/actions">See all my actions</a></h3>
 <h3><a href="/actions/new">Add a new action</a></h3>
 <h3><a href="/citizens/logout">Logout</a></h3>
 

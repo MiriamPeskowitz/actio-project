@@ -17,10 +17,11 @@ class ApplicationController < Sinatra::Base
   	  erb :'index'
   	end
 
-    get '/citizens' do
-      @citizens = Citizen.all
-      erb :'citizens/index'
-    end
+    # List of people signed up -- not needed. 
+    # get '/citizens' do
+    #   @citizens = Citizen.all
+    #   erb :'citizens/index'
+    # end
 
 #1 send SIGNUP form to browser
   	get '/citizens/signup' do
@@ -46,9 +47,9 @@ class ApplicationController < Sinatra::Base
  #3 Send LOGIN form to browser
   	get '/citizens/login' do
   		if !logged_in?
-  			erb :'citizens/login'
+  			 erb :'citizens/login'
   		else
-  			redirect to '/actions'
+  			 redirect to '/actions'
   		end 
   	end 	
 

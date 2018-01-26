@@ -44,11 +44,13 @@ Make video of a walk through:
 *****
 
 Next: 
-how to edit any one from your list? What is necessary to do this? 
-Add a post-Logout page that's inspirational (I made a goodbye.rb page -- do this on Tuesday, and record it. )
-Add " here's what other people are doing "
+how to edit any one from your list? What is necessary to do this? Not for this project, but I'd like to know how. 
+Add a post-Logout page that's inspirational (I made a goodbye.rb page -- do this on Tuesday, and record it. ) DONE
+Add " here's what other people are doing " let's see: Action.all {|title| <%title%>}
 License
 How to deploy 
 Add flash notes for failure messages
 
 Collect: github url , video link, blog post link. 
+https://github.com/MiriamPeskowitz/action-project
+
