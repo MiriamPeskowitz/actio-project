@@ -2,14 +2,13 @@ class CitizensController < ApplicationController
 
 #1 send SIGNUP form to browser
   	get '/citizens/signup' do
-      
+    
   		if logged_in? 
   			redirect to '/actions' 
   		else
-  			erb :'citizens/signup'
+  			erb :'citizen/signup'
   		end 
   	end
-
 #2 get SIGNUP data from form and CREATE citizen entry in db
   	post '/citizens/signup' do 
   		if params[:username] == '' ||  params[:email] ==  "" || params[:password] == ""

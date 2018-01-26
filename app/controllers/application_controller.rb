@@ -15,6 +15,7 @@ class ApplicationController < Sinatra::Base
   	get "/" do
   		session.clear
       @actions = Action.all #I put this here to bring data to the opening page. 
+      binding.pry
   	  erb :'index'
   	end
 
@@ -25,8 +26,7 @@ class ApplicationController < Sinatra::Base
     # end
 
 
-
-    helpers do
+helpers do
       def logged_in?
         !!session[:user_id]
       end
