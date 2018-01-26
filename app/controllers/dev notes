@@ -11,6 +11,13 @@
 7. As I figure out the fields in actions/new.erb, then I'll know what the migrations should be. 
 
 
+***
+January questions: 
+	* how to think through the views. Actions are the main ones. Citizen only has login/goodbye -- should these be elsewhere? 
+	* How to see all the actions, to be inspired
+	@actions = Action.all? 
+
+***
 
 1.Need help: separating, so that you can only see your own data. SOLVED -- this was amazing -- by using the relationships: not @actions = Action.... but this, because current_user is the instantiation of the Citizen class, so it's basically Citizen.actions...: 
 	get '/actions' do
@@ -29,7 +36,7 @@
 
 
 	Kevin "all my existential crises as a developer have been about missing the second equal sign in an if then statement"
-
+	gem "rack-flash3", :require => "rack-flash"
 
 *****
 Finishing up: 

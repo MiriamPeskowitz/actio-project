@@ -2,7 +2,8 @@
 
 <h1> Action/Project</h1>
 
-<p> Feeling like your political actions don't add up? Keep track of your actions to make things better. </p>
+<p> Feeling like your political actions do not add up? Keep track of everything you do to make things better. </p>
+
 
 
 <ul>
@@ -18,4 +19,14 @@
 
     <% end %>
 </ul>
+
+<h3>What people are doing: </h3>
+<ol>
+	<% @actions.each do |action| %>
+	  <li>
+	    <%= action.title - action.description %>
+	  </li>
+	<% end %>
+</ol>
+
 

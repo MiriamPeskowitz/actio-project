@@ -1,5 +1,5 @@
 
-<h2>So glad you arere here, resister/activist. Want to record what you do? Start by logging in.</h2>
+<h2>So glad you are here, resister/activist. Want to record what you do to make life better? Start by logging in.</h2>
 <form action="/citizens/login" method="POST">
 
   <label for="username">Your username</label>
@@ -11,4 +11,16 @@
   <input type="submit" value="Log me in">
 </form>
 
- <li><a href="/citizens/signup">First time? Sign up</a> </li>
+ <li><a href="/citizens/signup">First time here? Sign up</a> </li>
+  
+
+ 
+<h3>What are people doing? </h3>
+<ol>
+	<% @actions.each do |action| %>
+	  <li>
+	    <%= action.title %> 
+	    ...<%= action.description %>
+	  </li>
+	<% end %>
+</ol>

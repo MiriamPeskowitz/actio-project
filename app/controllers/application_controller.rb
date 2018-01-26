@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
 #show homepage 
   	get "/" do
   		session.clear
+      @actions = Action.all
   	  erb :'index'
   	end
 
@@ -25,6 +26,7 @@ class ApplicationController < Sinatra::Base
 
 #1 send SIGNUP form to browser
   	get '/citizens/signup' do
+      @actions = Action.all
   		if logged_in? 
   			redirect to '/actions' 
   		else
@@ -46,6 +48,7 @@ class ApplicationController < Sinatra::Base
 
  #3 Send LOGIN form to browser
   	get '/citizens/login' do
+      @actions = Action.all
   		if !logged_in?
   			 erb :'citizens/login'
   		else
@@ -76,6 +79,11 @@ class ApplicationController < Sinatra::Base
   			redirect to '/citizens/login'
   		end 
   	end 
+
+  #6 SHOW ALL ACTIONS on opening page 
+    # get '/citizens/show'
+    #   @actions = Action.all
+    #    erb :'citizens/show'
 
 
     helpers do

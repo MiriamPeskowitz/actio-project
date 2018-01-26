@@ -1,21 +1,16 @@
 
-<!-- 
-This isn't needed either, it's really the same as actions/show
 
-<h2>Your growing list of actions...</h2>
+ Show page for all the actions. 
 
-<p> Your name: <%= @citizen.username %></p>
+<h2>What everyone is doing: </h2>
 
-<ol><h3>Your actions:</h3>
-	<% @citizen.actions.each do |action| %>
+<ol>
+	<% @actions.each do |action| %>
 	  <li>
-	    <%= action.title %>
-	    <%= action.date %>
-	    <%= action.description %>
+	    <%= action.title ... action.description %>
 	  </li>
 	<% end %>
 </ol>
 
 <h3><a href="/actions/new">Add a new action</a></h3>
 <h3><a href="/citizens/logout">Log out </a></h3>
-Add edit?  -->
