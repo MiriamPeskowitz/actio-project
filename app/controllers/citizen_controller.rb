@@ -6,7 +6,7 @@ class CitizensController < ApplicationController
   		if logged_in? 
   			redirect to '/actions' 
   		else
-  			erb :'citizen/signup'
+  			erb :'citizens/signup'
   		end 
   	end
 #2 get SIGNUP data from form and CREATE citizen entry in db
@@ -44,6 +44,11 @@ class CitizensController < ApplicationController
   	 	    redirect to '/'
   	  end
    	end 
+
+    get '/citizens/index' do
+        @actions = Action.all
+        erb :'citizens/index'
+    end 
 
   #5 LOGOUT/clear session 
   	get '/citizens/logout' do

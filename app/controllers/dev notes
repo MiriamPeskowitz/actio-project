@@ -16,10 +16,15 @@ January questions:
 	* how to think through the views. Actions are the main ones. Citizen only has login/goodbye -- should these be elsewhere? 
 	* How to see all the actions, to be inspired
 	@actions = Action.all? 
+	How would I create tests for this? 
+	* add capitalize for names and dates? 
+	Add a platform page that lists all actions with delete buttons. 
 
+
+	-- What do I need to add/change for the project review. 
 ***
 
-1.Need help: separating, so that you can only see your own data. SOLVED -- this was amazing -- by using the relationships: not @actions = Action.... but this, because current_user is the instantiation of the Citizen class, so it's basically Citizen.actions...: 
+1.DONE Need help: separating, so that you can only see your own data. SOLVED -- this was amazing -- by using the relationships: not @actions = Action.... but this, because current_user is the instantiation of the Citizen class, so it's basically Citizen.actions...: 
 	get '/actions' do
 		if logged_in?
 			@actions = current_user.actions
@@ -27,7 +32,7 @@ January questions:
 		else 
 
 
-2. seed data ? Didn't get to this. 
+2. DONE seed data ?  DONE
 3. which one? redirect to "/actions/#{current_user.username}" # or actions/#{@action.slug} DONE - -slug is helpful for the browser url
 4. debugging: show.erb DONE 
 5. How to get to citizens/show.erb vs actions/show.erb DONE 
@@ -36,6 +41,7 @@ January questions:
 
 
 	Kevin "all my existential crises as a developer have been about missing the second equal sign in an if then statement"
+	
 	gem "rack-flash3", :require => "rack-flash"
 
 *****
@@ -55,9 +61,21 @@ how to edit any one from your list? What is necessary to do this? Not for this p
 Add a post-Logout page that's inspirational (I made a goodbye.rb page -- do this on Tuesday, and record it. ) DONE
 Add " here's what other people are doing " let's see: Action.all {|title| <%title%>}
 License
-How to deploy 
+How to deploy -- keep on github and use local server. 
 Add flash notes for failure messages
 
 Collect: github url , video link, blog post link. 
 https://github.com/MiriamPeskowitz/action-project
+
+
+<h3>What are people doing? </h3>
+<ol>
+	<% @actions.each do |action| %>
+	  <li>
+	    <%= action.title %> 
+	    <%= action.description %>
+	  </li>
+	<% end %>
+</ol>
+
 
