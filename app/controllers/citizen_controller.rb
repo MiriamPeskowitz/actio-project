@@ -54,7 +54,7 @@ class CitizensController < ApplicationController
   	get '/citizens/logout' do
   		if logged_in?
   			session.clear
-  			erb :'citizens/goodbye'
+  			erb :'citizens/logout'
   		else 
   			redirect to '/citizens/login'
   		end 

@@ -52,8 +52,8 @@ class ActionsController < ApplicationController
 		if !logged_in?
 			redirect to '/citizens/login'	
 		else
-			@action = Action.find_by(id: params[:id])
-		
+			@action = Action.find_by(:id => params[:id])
+		binding.pry
 			erb :'actions/show'
 		end 
 	end 

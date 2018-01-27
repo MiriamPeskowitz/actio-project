@@ -5,9 +5,9 @@
 
 <ol>
 	<% @actions.each do |action| %>
-	<li id="each-action">
-		<%= action.date %>: <%= action.title %> -- <%= action.description %>
-	</li>
+	
+		<%= action.date %> <%= action.title %> -- <%= action.description %>
+	
 	<% end %>
 </ol>
 <br>
