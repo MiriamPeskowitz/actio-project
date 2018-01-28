@@ -1,7 +1,6 @@
 
 class ActionsController < ApplicationController
-	use Rack::Flash
-
+	
 
 	get '/actions' do
 		if logged_in?
