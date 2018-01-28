@@ -36,11 +36,8 @@ class ActionsController < ApplicationController
 				@action = Action.create(:title => params[:title], :date => params[:date], :description => params[:description], :citizen_id => current_user.id)
 	
 				
-				flash[:notice] = "You listed a new action."
-			
 				redirect to "/actions/#{@action.id}"
-				# , message: "You listed a new action."
-				# or actions/#{@action.slug} how does this work? yes -- to get username? 
+			
 			else 
 				redirect to '/actions/new'
 			end

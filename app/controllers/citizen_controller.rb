@@ -12,7 +12,7 @@ class CitizensController < ApplicationController
 #2 get SIGNUP data from form and CREATE citizen entry in db
   	post '/citizens/signup' do 
   		if params[:username] == '' ||  params[:email] ==  "" || params[:password] == ""
-  			flash[:notice] = "Fill in all the fields, okay?"
+  			
         redirect to '/citizens/signup'
   		else
   			@citizen = Citizen.create(:username => params[:username], :email => params[:email], :password => params[:password])
@@ -40,7 +40,7 @@ class CitizensController < ApplicationController
   	 		 session[:user_id] = @citizen.id
   		   redirect to '/actions'
   	  else
-          flash[:notice] = "You've got a lot on your mind, but we do need a valid Username and Password."
+          # flash[:notice] = "You've got a lot on your mind, but we do need a valid Username and Password."
   	 	    redirect to '/'
   	  end
    	end 
