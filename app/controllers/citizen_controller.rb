@@ -1,6 +1,6 @@
 class CitizensController < ApplicationController
     # use Rack::Flash
-#1 send SIGNUP form to browser
+
   	get '/citizens/signup' do
     
   		if logged_in? 
@@ -9,7 +9,7 @@ class CitizensController < ApplicationController
   			erb :'citizens/signup'
   		end 
   	end
-#2 get SIGNUP data from form and CREATE citizen entry in db
+
   	post '/citizens/signup' do 
   		if params[:username] == '' ||  params[:email] ==  "" || params[:password] == ""
   			
@@ -21,7 +21,6 @@ class CitizensController < ApplicationController
   		end 
   	end 
 
- #3 Send LOGIN form to browser
   	get '/citizens/login' do
     
   		if !logged_in?
@@ -31,7 +30,7 @@ class CitizensController < ApplicationController
   		end 
   	end 	
 
- #4 Read LOGIN data from form, send to db/sessions 
+
    	post '/citizens/login' do
       redirect to '/actions' if logged_in?
       @citizen = Citizen.find_by(username: params[:username])
@@ -50,7 +49,7 @@ class CitizensController < ApplicationController
         erb :'citizens/index'
     end 
 
-  #5 LOGOUT/clear session 
+  
   	get '/citizens/logout' do
   		if logged_in?
   			session.clear
@@ -60,8 +59,4 @@ class CitizensController < ApplicationController
   		end 
   	end 
 
-  #6 SHOW ALL ACTIONS on opening page -moved up 
-    # get '/citizens/show'
-    #   @actions = Action.all
-    #    erb :'citizens/show'
   end

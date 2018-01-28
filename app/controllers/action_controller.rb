@@ -60,7 +60,7 @@ class ActionsController < ApplicationController
 
 
 	get '/actions/:id/edit' do
-		# possible: use slug? Ask coach 
+		# possible: use slug? 
 		# @action = Action.find_by_slug(params[:slug])
 		# @action.update(params[:title], params[:date], params[:description])
 
