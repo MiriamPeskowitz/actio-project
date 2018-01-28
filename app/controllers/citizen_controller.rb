@@ -1,5 +1,5 @@
 class CitizensController < ApplicationController
-
+    use Rack::Flash
 #1 send SIGNUP form to browser
   	get '/citizens/signup' do
     

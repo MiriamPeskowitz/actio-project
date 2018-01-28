@@ -1,8 +1,8 @@
 
 class ActionsController < ApplicationController
+	use Rack::Flash
 
 
-#1 Read index
 	get '/actions' do
 		if logged_in?
 			@actions = current_user.actions
@@ -12,7 +12,7 @@ class ActionsController < ApplicationController
 		end 
 	end 
 
-#2 Create /send form to browser
+
 	get '/actions/new' do
 		if logged_in? 
 			erb :'actions/new'
@@ -27,7 +27,7 @@ class ActionsController < ApplicationController
 	# 	@action = Action.find_by_slug(params[:slug])
 	# 	erb :'actions/show'
 	# end 	
-#3 Create/get data
+
 	post '/actions' do
 		if logged_in? 
 
@@ -35,8 +35,11 @@ class ActionsController < ApplicationController
 				# @citizen = Citizen.find_by(:username => params[:username])
 				@action = Action.create(:title => params[:title], :date => params[:date], :description => params[:description], :citizen_id => current_user.id)
 	
+				
+				flash[:notice] = "You listed a new action."
+			
 				redirect to "/actions/#{@action.id}"
-				flash[:message] = "You listed a new action."
+				# , message: "You listed a new action."
 				# or actions/#{@action.slug} how does this work? yes -- to get username? 
 			else 
 				redirect to '/actions/new'
@@ -47,17 +50,19 @@ class ActionsController < ApplicationController
 	end 
 
 
-#4 Read/show page 
+
 	get '/actions/:id' do
 		if !logged_in?
 			redirect to '/citizens/login'	
 		else
 			@action = Action.find_by(:id => params[:id])
-		binding.pry
+		
 			erb :'actions/show'
+
 		end 
 	end 
-#5 update/send form to browser
+
+
 	get '/actions/:id/edit' do
 		# possible: use slug? Ask coach 
 		# @action = Action.find_by_slug(params[:slug])
@@ -75,11 +80,10 @@ class ActionsController < ApplicationController
 		end 
 	end 
 
-#6 update/get data from form 
+
 	patch '/actions/:id' do
 		@action = Action.find_by_id(params[:id])
 		redirect to '/citizens/login' if !logged_in?
-# how would I update several fields? 
 		if params[:description] == "" || current_user.id != @action.citizen_id
 			redirect to "/actions/#{@action.id}/edit"
 		else
@@ -88,7 +92,7 @@ class ActionsController < ApplicationController
 		end 
 	end 
 
-#7 delete
+
 	delete '/actions/:id' do
 		@action = Action.find_by_id(params[:id])
 		redirect to "/" if !logged_in?
